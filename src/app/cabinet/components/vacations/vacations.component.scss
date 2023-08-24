@@ -1,0 +1,143 @@
+.dfilter-vacation-date .mat-form-field .mat-form-field {
+  height: 0em;
+}
+
+.filter-employee {
+  padding: 0 15px;
+}
+
+div.customer-filter-pane {
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+span.form-label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+div.overlay {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+div.overlay.active {
+  visibility: visible;
+  opacity: 0.8;
+}
+
+div.new-customer {
+  visibility: hidden;
+  position: fixed;
+  top: calc(50vh - 300px);
+  left: calc(50% - 338px);
+  z-index: 500;
+  background-color: white;
+  width: 700px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 30px 25px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+div.new-customer.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+div.new-customer button.filter-btn {
+  margin-top: 20px;
+}
+
+div.new-customer > div {
+  padding: 0 30px;
+}
+
+div.new-customer mat-form-field {
+  width: 100%;
+  padding: 10px;
+}
+
+.mat-icon-button.mat-primary {
+  color: #e91717 !important;
+}
+
+button.clck-new-customer {
+  margin-right: calc(8.333333% - 3rem + 10px);
+}
+
+.mat-menu-item {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  line-height: 18px;
+  height: 36px;
+  padding: 0 16px;
+  text-align: left;
+  text-decoration: none;
+  max-width: 100%;
+  position: relative;
+}
+.fa-pen,
+.fa-trash {
+  margin-right: 10px;
+}
+
+span.actions {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.mat-column-projects {
+  width: 70%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+.mat-column-fullname {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+//Spinner
+.spinner {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 70%;
+  left: 45%;
+  margin-left: -50px;
+  margin-top: -50px;
+  background-size: 100%;
+}
+
+.spinner-div ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #e91717;
+}

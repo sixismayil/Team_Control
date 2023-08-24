@@ -1,0 +1,182 @@
+<div class="container-fluid px-4"  style="padding-bottom: 100px">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="tc-label">Bonuslar və Premiyalar</h1>
+      <button
+        mat-button
+        class="new-btn clck-new-customer"
+        (click)="openDialog('new', null)"
+      >
+        <i class="fas fa-plus p-1"></i>Yeni Bonus və Premiya
+      </button>
+    </div>
+    <div
+      class="customer-filter-pane row mb-3 px-5 py-4 align-items-center"
+      [formGroup]="filterForm"
+    >
+        <div class="col-lg-4 col-12 d-flex flex-column">
+        <span class="form-label">İşçilər</span>
+        <mat-form-field appearance="fill">
+          <div class="filter-employee">
+            <input matInput #input class="dd" formControlName="employee"/>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3 col-12 d-flex flex-column filter-vacation-date">
+        <span class="form-label"> Verilmə tarixi</span>
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+      </div>
+  
+      <div class="col-lg-3 col-12 d-flex flex-column">
+        <span class="form-label">Miqdar</span>
+        <mat-form-field appearance="fill">
+          <div class="filter-employee">
+            <input matInput #input type="number" class="dd" formControlName="amount"/>
+          </div>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-lg-2 col-12 pt-2 d-flex justify-content-center">
+        <button mat-button class="filter-btn" (click)="filter_bonuses()">Filterlə</button>
+      </div>
+    </div>
+
+    <div class="mat-elevation-z8" [ngClass]="{'d-none':showSpinner}"> 
+        <!-- [ngClass]="{'d-none':showSpinner}"  -->
+      <table mat-table [dataSource]="dataSource" class="">
+        <!-- employee Column -->
+        <ng-container matColumnDef="employee">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.background-color]="color"
+            class="sd"
+            [style.width]="'20%'"
+          >
+            İşçilər
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.employee }}</td>
+        </ng-container>
+  
+        <!-- startDate Column -->
+        <ng-container matColumnDef="date">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.background-color]="color"
+            class="sd3"
+            [style.width]="'20%'"
+          >
+            Verilmə tarixi
+          </th>
+          <td mat-cell *matCellDef="let element">{{  changeFormatDate(element.date) }}</td>
+        </ng-container>
+  
+        <!-- reason Column -->
+        <ng-container matColumnDef="amount">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.background-color]="color"
+            class="sd3"
+            [style.width]="'20%'"
+          >
+            Miqdarı:
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.amount}}&nbsp;AZN</td>
+        </ng-container>
+  
+        <!-- period Column -->
+        <ng-container matColumnDef="reason">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.background-color]="color"
+            class="sd3"
+          >
+            Səbəb/Layihə:
+          </th>
+          <td mat-cell *matCellDef="let element" >
+            {{ element.reason}}
+            <mat-chip-list
+              *ngIf="element.isPrize == false"
+            >
+            <mat-chip                
+             [ngStyle]="{
+              'background-color':
+                'rgba(' +
+                element.project.split('?')[1].split(':')[0] +
+                ',' +
+                element.project.split('?')[1].split(':')[1] +
+                ',' +
+                element.project.split('?')[1].split(':')[2] +
+                ',0.3)',
+              color:
+                'rgb(' +
+                element.project.split('?')[1].split(':')[0] +
+                ',' +
+                element.project.split('?')[1].split(':')[1] +
+                ',' +
+                element.project.split('?')[1].split(':')[2] +
+                ')'
+            }">
+              {{(element.isPrize == true )? element.reason  : element.project.split('?')[0]}}
+              
+            </mat-chip>
+            </mat-chip-list> 
+          </td>      
+          <!-- <td mat-cell *matCellDef="let element">{{ element.reason}} {{element.project}}</td> -->
+        </ng-container>
+  
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.background-color]="color"
+            class="sd1"
+          ></th>
+          <td mat-cell *matCellDef="let element" style="text-align: right">
+            <a
+              [matMenuTriggerFor]="menu"
+              #menuTrigger
+              style="color: #000000; cursor: pointer"
+              matTooltip="Seçimlər"
+              class="pointer"
+              ><i class="fas fa-ellipsis-v"></i
+            ></a>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openDialog('update', element.id)">
+                <i class="fas fa-pen"></i><span class="actions">Düzənlə</span>
+              </button>
+              <button mat-menu-item (click)="deleteBonusAndPrize(element.id)">
+                <i class="fas fa-trash" style="color: #e91717"></i
+                ><span class="actions">Deaktiv et</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        class="paginator-custom"
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+        (page)="pageChanged($event)"
+      >
+      </mat-paginator>
+    </div>
+    <div class="spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+      <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+      </mat-spinner>
+  </div>
+
+
+  </div>

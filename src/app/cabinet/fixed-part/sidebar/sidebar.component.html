@@ -1,0 +1,168 @@
+<aside id="sidebar" class="text-white text-nowrap">
+    <!-- Header -->
+    <mat-list role="list" class="pt-3">
+        <mat-list-item role="listitem">
+            <a href="http://gts.az/" target="_blank" class="d-flex align-items-center">
+                <img src="../../../../assets/images/gts-logo.png" width="50px">
+                <div *ngIf="sidenavWidth > 4" class="d-flex flex-column logo-div">
+                    <span class="company-name">GT Solutions</span>
+                    <span class="project-name">TEAM CONTROL</span>
+                </div>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <hr style="width: 90%; margin: 20px auto;">
+    <!-- Ana səhifə -->
+    <mat-list role="list" *ngIf="this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" [routerLink]="['/cabinet']" routerLinkActive="router-link-active">
+                <i class="fas fa-home"></i>
+                <span *ngIf="sidenavWidth > 4">Ana Səhifə</span>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <!-- Ana səhifə - end -->
+    <!-- Şəxslər -->
+    <mat-list *ngIf="sidenavWidth == 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'" role="list" style="cursor:pointer">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold">
+                <i class="fas fa-user"></i>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <mat-accordion *ngIf="sidenavWidth > 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="text-white text-nowrap font-weight-bold d-flex align-items-center">
+                    <i class="fas fa-user"></i>
+                    <span>Şəxslər</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/employees']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-user"></i>
+                        <span>İşçilər</span>
+                    </a>
+                </li>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/customers']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Müştərilər</span>
+                    </a>
+                </li>
+            </mat-list-item>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+    <!-- Şəxslər  - end -->
+    <!-- Proyektlər -->
+    <mat-list role="list" *ngIf="this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" [routerLink]="['/projects']" routerLinkActive="router-link-active">
+                <i class="fas fa-folder"></i>
+                <span *ngIf="sidenavWidth > 4">Proyektlər</span>
+            </a>
+        </mat-list-item>
+    </mat-list>
+
+    <mat-list role="list" *ngIf="this.cabinetService.getUserRole().toLowerCase() == 'false'">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" [routerLink]="['/employee-detail']" [queryParams]="{id:this.cabinetService.getUserId()}" routerLinkActive="router-link-active">
+                <i class="fas fa-user"></i>
+                <span *ngIf="sidenavWidth > 4">İşçi Detalı</span>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <!-- Proyektlər - end -->
+    <!-- Maliyyə -->
+    <mat-list *ngIf="sidenavWidth == 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'" role="list">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" style="cursor:pointer">
+                <i class="fas fa-dollar-sign"></i>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <mat-accordion *ngIf="sidenavWidth > 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="text-white text-nowrap font-weight-bold d-flex align-items-center">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Maliyyə</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/salaries']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>Maaşlar</span>
+                    </a>
+                </li>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/bonuses-and-prizes']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-award"></i>
+                        <span>Bonus və Premiya</span>
+                    </a>
+                </li>
+            </mat-list-item>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <!-- Maliyyə - end -->
+    <!-- Məzuniyyətlər -->
+    <mat-list role="list" *ngIf="this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" [routerLink]="['/vacations']" routerLinkActive="router-link-active">
+                <i class="fas fa-hourglass"></i>
+                <span *ngIf="sidenavWidth > 4">Məzuniyyətlər</span>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <!-- Məzuniyyətlər -end -->
+    <!-- Statik Məlumatlar -->
+    <mat-list *ngIf="sidenavWidth == 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'" role="list">
+        <mat-list-item role="listitem">
+            <a class="text-white text-nowrap font-weight-bold" style="cursor:pointer">
+                <i class="fas fa-cog"></i>
+            </a>
+        </mat-list-item>
+    </mat-list>
+    <mat-accordion *ngIf="sidenavWidth > 4 && this.cabinetService.getUserRole().toLowerCase() == 'true'">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="text-white text-nowrap font-weight-bold d-flex align-items-center">
+                    <i class="fas fa-cog"></i>
+                    <span>Statik Məlumatlar</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/project-statuses']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-folder"></i>
+                        <span>Layihə statusları</span>
+                    </a>
+                </li>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/vacation-reasons']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-hourglass"></i>
+                        <span>Məzuniyyət səbəbləri</span>
+                    </a>
+                </li>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <li class="pl-3 side_li">
+                    <a [routerLink]="['/positions']" routerLinkActive="router-link-active" class="text-white text-nowrap side_a">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Vəzifələr</span>
+                    </a>
+                </li>
+            </mat-list-item>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <!-- Statik Məlumatlar - end -->
+</aside>

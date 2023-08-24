@@ -1,0 +1,91 @@
+<div class="new-customer row">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 *ngIf="label=='new'" class="tc-label">
+            Yeni şəxs əlavəsi
+        </h1>
+        <h1 *ngIf="label!='new'" class="tc-label">
+            Şəxslərə düzəliş
+        </h1>
+        <button mat-icon-button mat-dialog-close color="primary">
+      <mat-icon>close</mat-icon>
+    </button>
+    </div>
+    <form [formGroup]="addPeopleForm" (ngSubmit)="submitHandler()">
+        <mat-accordion formArrayName="peopleList" *ngIf="!showSpinner">
+            <h2 *ngIf="peopleList.value.length==0" class="d-flex justify-content-center is-empty">Boşdur</h2>
+            <mat-expansion-panel *ngFor="let person of peopleList.controls; let i = index" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [formGroup]="getPerson(i)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="m-0">
+                        <span class="form-title">Şəxs məlumatları:</span>
+                    </mat-panel-title>
+                    <mat-panel-description class="m-0">
+                        <span class="employee-name d-flex align-items-center">{{getPersonNameValue(i)}}</span>
+                    </mat-panel-description>
+                    <button mat-button class="filter-btn mr-2" *ngIf="peopleList.length > 1" (click)="removePerson(i)">Sil</button>
+                </mat-expansion-panel-header>
+                <div class="row" style="padding:10px">
+                    <div class="col-6">
+                        <span class="form-label">Şəxs növü</span>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-select class="customer-component" formControlName="personType" placeholder="Seçin" (selectionChange)="switchPersonType($event.value, i)">
+                                <mat-option value="1">İşçi</mat-option>
+                                <mat-option value="2">Müştəri</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6" *ngIf="getPerson(i).contains('employeeId')">
+                        <span class="form-label">İşçi adı:</span>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-select class="customer-component" formControlName="employeeId" placeholder="Seçin">
+                                <mat-option>Seçin</mat-option>
+                                <mat-option *ngFor="let employee of employeeList" [value]="employee.id">
+                                    {{employee.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6" *ngIf="getPerson(i).contains('customerId')">
+                        <span class="form-label">Müştəri adı:</span>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-select class="customer-component" formControlName="customerId" placeholder="Seçin">
+                                <mat-option>Seçin</mat-option>
+                                <mat-option *ngFor="let customer of customerList" [value]="customer.id">
+                                    {{customer.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <span class="form-label">Rolu:</span>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-select class="customer-component" formControlName="role" placeholder="Seçin">
+                                <mat-option>Seçin</mat-option>
+                                <mat-option value=1>Əsas</mat-option>
+                                <mat-option value=0>Köməkçi</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6" *ngIf="getPerson(i).contains('position')">
+                        <span class="form-label">Vəzifə:</span>
+                        <mat-form-field appearance="fill">
+                            <mat-select class="customer-component" formControlName="position" multiple placeholder="Seçin">
+                                <mat-option *ngFor="let position of positionList" [value]="position.id">{{position.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div *ngIf="this.label=='new'">
+            <span class="add-new-person mt-2"><i class="fa-solid fa-plus d-flex align-items-center justify-content-center" (click)="addPeople()"></i></span>
+        </div>
+        <div class="col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center" style="padding-bottom:10px; padding-top:10px">
+            <button mat-button class="filter-btn" *ngIf="label=='new'" [disabled]="showSpinner || !addPeopleForm.valid" type="submit">Əlavə et</button>
+            <button mat-button class="filter-btn" *ngIf="label!='new' && peopleList.value.length > 0" [disabled]="showSpinner || !addPeopleForm.valid" type="submit">Yadda saxla</button>
+        </div>
+        <div class="row col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+            <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+            </mat-spinner>
+        </div>
+    </form>
+</div>

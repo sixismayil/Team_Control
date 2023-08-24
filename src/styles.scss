@@ -1,0 +1,290 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "./app/styles/button.scss";
+@import "./app/styles/table.scss";
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+    // background: #3c5d7d;
+    background: transparent;
+}
+
+.mat-expansion-panel {
+    background: transparent;
+    color: white;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+}
+
+.mat-expansion-indicator:not(app-add-employee-to-project .mat-expansion-indicator)::after {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+// mat-sidenav[style*="15%"] mat-sidenav-content {
+//     transition: margin-left 0s;
+// }
+mat-sidenav[style*="15%"] a.router-link-active {
+    width: 100%;
+    padding: 10px 0 10px 10px;
+    background: #333333;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+}
+
+mat-sidenav[style*="15%"] a.router-link-active::after {
+    content: "";
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background-color: white;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+mat-sidenav[style*="15%"] a {
+    width: 100%;
+    padding: 10px 0 10px 10px;
+}
+
+mat-expansion-panel li {
+    list-style: none;
+}
+
+mat-sidenav[style*="15%"] mat-expansion-panel-header {
+    padding: 0 16px !important;
+}
+
+mat-sidenav[style*="4%"] div.mat-list-item-content {
+    display: flex;
+    justify-content: center;
+}
+
+mat-sidenav[style*="15%"] div.mat-list-item-content {
+    display: flex;
+    justify-content: start;
+}
+
+mat-sidenav[style*="15%"] div.mat-list-item-content {
+    padding-right: 0 !important;
+}
+
+mat-sidenav[style*="15%"] i {
+    width: 30px !important;
+    margin-right: 15px;
+}
+
+mat-sidenav[style*="4%"] i.fa-chevron-circle-right,
+mat-sidenav[style*="15%"] i.fa-chevron-circle-left {
+    display: block;
+}
+
+mat-sidenav[style*="15%"] i.fa-chevron-circle-right,
+mat-sidenav[style*="4%"] i.fa-chevron-circle-left {
+    display: none;
+}
+
+div.mat-list-item-content li a {
+    width: 100%;
+    padding: 10px 0 10px 10px;
+}
+
+mat-sidenav[style*="4%"] div.mat-list-item-content {
+    padding-left: 16px !important;
+}
+
+mat-sidenav[style*="15%"] mat-expansion-panel-header {
+    padding-left: 13px !important;
+}
+
+mat-sidenav[style*="15%"] mat-list:nth-child(1) a {
+    padding-left: 0 !important;
+}
+
+mat-sidenav[style*="4%"] mat-list:nth-child(1) div.mat-list-item-content {
+    padding: 0 3px !important;
+}
+
+mat-expansion-panel div.mat-expansion-panel-body {
+    border-left: 1px solid white;
+    padding: 0 0 0 5px;
+}
+
+div.mat-expansion-panel-content:not(app-add-employee-to-project div.mat-expansion-panel-content) {
+    padding-left: 45px;
+}
+
+h1.tc-label {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 29px;
+    padding: 20px 0;
+    margin: 0 0 10px 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+div.customer-filter-pane mat-form-field,
+div.new-customer mat-form-field,
+div.new-position mat-form-field,
+div.new-vacation-reason mat-form-field,
+div.new-project-status mat-form-field,
+div.new-project-filter-pane mat-form-field {
+    padding: 10px 0 !important;
+}
+
+div.customer-filter-pane div.mat-form-field-flex,
+div.new-customer div.mat-form-field-flex,
+div.new-position div.mat-form-field-flex,
+div.new-vacation-reason div.mat-form-field-flex,
+div.new-project-status div.mat-form-field-flex,
+div.new-project-filter-pane div.mat-form-field-flex {
+    padding: 0 !important;
+    border-radius: 30px !important;
+    border: 1px solid #cdd6e2;
+    background-color: white !important;
+}
+
+app-customer-filter {
+    padding: 0 20px;
+}
+
+div.mat-form-field-underline {
+    display: none;
+}
+
+div.mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+mat-select.customer-component div.mat-select-arrow-wrapper {
+    vertical-align: bottom;
+}
+
+mat-select.customer-component div.mat-select-trigger:not(app-add-employee-to-project div.mat-select-trigger):not(app-add-project div.mat-select-trigger) {
+    padding: 0 20px;
+}
+
+div.mat-form-field-infix {
+    padding-top: 0 !important;
+}
+
+table.mat-table thead tr th {
+    border-bottom: none !important;
+    background-color: white;
+}
+
+@media screen and (max-width: 991px) {
+    div.mat-expansion-panel-content {
+        padding-left: 5%;
+    }
+    div.mat-list-item-content:not(div.mat-expansion-panel-body div.mat-list-item-content) {
+        padding: 0 !important;
+        padding-left: 16px !important;
+    }
+    mat-list-item a {
+        width: 100%;
+        padding: 10px 0 10px 10px;
+    }
+    app-sidebar {
+        padding-bottom: 20px;
+    }
+}
+
+div.new-customer div.mat-form-field-flex,
+div.new-position div.mat-form-field-flex,
+div.new-vacation-reason div.mat-form-field-flex,
+div.new-project-status div.mat-form-field-flex,
+div.new-project div.mat-form-field-flex {
+    padding: 0 15px !important;
+}
+
+.mat-expansion-indicator:not(app-add-employee-to-project .mat-expansion-indicator)::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: "";
+    position: absolute !important;
+    top: 5px !important;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate( 45deg);
+    vertical-align: top !important;
+}
+
+mat-expansion-panel-header span.mat-expansion-indicator:not(app-add-employee-to-project .mat-expansion-indicator) {
+    position: relative !important;
+    background-color: gray !important;
+    padding: 6px !important;
+    height: 20px !important;
+    display: flex !important;
+    width: 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+}
+
+div.cdk-overlay-pane {
+    border-radius: 30px;
+}
+
+mat-dialog-container.mat-dialog-container {
+    border-radius: 30px;
+}
+
+div.new-customer span.mat-button-focus-overlay,
+div.new-position span.mat-button-focus-overlay,
+div.new-vacation-reason span.mat-button-focus-overlay,
+div.new-project-status span.mat-button-focus-overlay,
+div.new-project span.mat-button-focus-overlay {
+    background-color: white !important;
+}
+
+mat-select.position-select div.mat-select-arrow-wrapper {
+    vertical-align: bottom;
+}
+
+//Input background autocomplete
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #000 !important;
+}
+
+//action-box
+.mat-menu-content:not(:empty) {
+    padding: 0px !important;
+}
+
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+    pointer-events: none;
+    top: 0;
+    left: 23px;
+    height: 100%;
+    width: 100%;
+}
+
+.filter-vacation-date .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+    display: inline-block !important;
+}
+
+.filter-vacation-date .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0em 0 .75em 10px !important;
+}

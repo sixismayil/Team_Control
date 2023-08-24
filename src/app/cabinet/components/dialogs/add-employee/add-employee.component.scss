@@ -1,0 +1,100 @@
+span.form-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+mat-form-field {
+    width: 100%;
+    padding: 10px;
+}
+
+.mat-icon-button.mat-primary {
+    color: #e91717 !important;
+}
+
+div.new-customer {
+    background-color: white;
+    width: 700px;
+    border-radius: 30px;
+}
+
+div.new-customer>div {
+    padding: 0 30px;
+}
+
+.date .mat-form-field {
+    line-height: 0 ;
+}
+
+//Input background autocomplete
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #000 !important;
+}
+
+button:disabled {
+    display: none;
+}
+.spinner{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 48%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+}
+.spinner-div ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #e91717;
+}
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+
+  //mat select checkbox color
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: red;
+}
+
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+    background-color:red;
+}  
+
+//scrol
+.scrollbar {
+    height: 570px;
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden ;
+    }
+
+    mat-dialog-container.mat-dialog-container{
+        padding: 0 !important;
+    }
+
+    .force-overflow {
+    min-height: 0px;
+    }
+
+
+    .scrollbar-danger::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+    border-radius: 4px; }
+    
+    .scrollbar-danger::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F5F5F5; }
+    
+    .scrollbar-danger::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #ff3547; }
+    

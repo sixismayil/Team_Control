@@ -1,0 +1,110 @@
+<form [formGroup]="bonusAndPrizeForm">
+    <div class="new-customer row" [ngClass]="showAddBonusAndPrizeModal ? 'active': ''">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1 class="tc-label" *ngIf="label=='new'">
+                Yeni Bonus və Premiya
+            </h1>
+            <h1 class="tc-label" *ngIf="label=='update'">
+                Düzənlə
+            </h1>
+            <button mat-dialog-close mat-icon-button color="primary">
+              <mat-icon>close</mat-icon>
+              </button>
+        </div>
+
+        <div class="col-12">
+            <span class="form-label">Bonusun və ya Premiya</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                 <mat-select class="customer-component" formControlName="isPrize" placeholder="Seçin" >
+                    <mat-option value="0">Bonus</mat-option>
+                    <mat-option value="1">Premiya</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-12" *ngIf="bonusAndPrizeForm.controls.employeeId">
+            <span class="form-label">Şəxs:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select class="customer-component" formControlName="employeeId" placeholder="Seçin">
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let employee of employeeArray" [value]="employee.id">
+                        {{employee.fullname}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="bonusAndPrizeForm.controls.employeeId.invalid && (bonusAndPrizeForm.controls.employeeId.dirty || bonusAndPrizeForm.controls.employeeId.touched )">
+                <div class="text-danger" *ngIf="bonusAndPrizeForm.controls.employeeId.errors">
+                    Şəxs seçin.
+                </div>
+            </div>
+        </div>
+        <div class="col-12 filter-vacation-date" *ngIf="bonusAndPrizeForm.controls.date">
+            <span class="form-label">Verilmə tarixi:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input [matDatepicker]="picker" matInput autocomplete="off" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="bonusAndPrizeForm.controls.date.invalid && (bonusAndPrizeForm.controls.date.dirty || bonusAndPrizeForm.controls.date.touched)">
+                <div class="text-danger" *ngIf="bonusAndPrizeForm.controls.date.errors?.required">
+                    Verilmə tarixi boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12"  *ngIf="bonusAndPrizeForm.controls.isPrize.value=='0'">
+            <span class="form-label">Layihələr</span>
+            <mat-form-field appearance="fill">
+                <mat-select class="customer-component" formControlName="projectId" placeholder="Seçin" >
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let project of projectsLookupArray" [value]="project.id">
+                        {{project.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="bonusAndPrizeForm.controls.projectId.invalid && (bonusAndPrizeForm.controls.projectId.dirty || bonusAndPrizeForm.controls.projectId.touched)">
+                <div class="text-danger" *ngIf="bonusAndPrizeForm.controls.projectId.errors?.required">
+                    Layihə boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 date" *ngIf="bonusAndPrizeForm.controls.isPrize.value!=0">
+            <span class="form-label">Səbəb:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput formControlName="reason" autocomplete="off" required>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="bonusAndPrizeForm.controls.reason.invalid && (bonusAndPrizeForm.controls.reason.dirty || bonusAndPrizeForm.controls.reason.touched)">
+                <div class="text-danger" *ngIf="bonusAndPrizeForm.controls.reason.errors?.required">
+                    Səbəb boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12" *ngIf="bonusAndPrizeForm.controls.amount">
+            <span class="form-label">Miqdar:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" formControlName="amount" autocomplete="off" required>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="bonusAndPrizeForm.controls.amount.invalid && (bonusAndPrizeForm.controls.amount.dirty || bonusAndPrizeForm.controls.amount.touched)">
+                <div class="text-danger" *ngIf="bonusAndPrizeForm.controls.amount.errors?.required">
+                    Miqdar boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="!showSpinner" class="col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center" style="padding-bottom:10px; padding-top:10px">
+            <button *ngIf="label=='new'" mat-button class="filter-btn" (click)="addBonusAndPrize()" [disabled]="showSpinner">Əlavə et</button>
+            <button *ngIf="label=='update'" mat-button class="filter-btn" (click)="addBonusAndPrize()" [disabled]="showSpinner">Yadda saxla</button>
+        </div>
+        <div class="row col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+            <button [disabled]="true" mat-button class="filter-btn">
+            Əlavə et
+        </button>
+            <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+            </mat-spinner>
+        </div>
+    </div>
+</form>

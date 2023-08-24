@@ -1,0 +1,230 @@
+<div class="container-fluid px-4 general row justify-content-around" [ngClass]="{'d-none':showSpinner}" style="padding-bottom: 100px">
+<div class="col-lg-4">
+    <div class="row g-0">
+    <aside class="main-project-info col-6 col-lg-11 mb-4" [ngClass]="{'d-none': responseNull==true}">
+        <div class="image d-flex justify-content-center">
+            <img src="./../../../../assets/images/user-solid.png" alt="">
+        </div>
+        <h1 class="project-label m-0 position-relative d-flex justify-content-center">
+            {{showSpinner? "" : employeeFullname}}
+        </h1>
+        <div class="mt-4" *ngIf="responseNull==false">
+            <div class="row mt-2"><span class="customer-detail col-5">Doğum tarixi:</span>{{changeFormatDate(employeeBirthdate)}}</div>
+            <div class="row mt-2"><span class="customer-detail col-3">Email:</span><div class="col-9 p-0">{{employeeEmail}}</div> </div>
+            <div class="row mt-2"><span class="customer-detail col-3">Vəzifə:</span><div class="col-9 p-0"> {{employeePosition}}</div></div>
+            <div class="row mt-2"><span class="customer-detail col-3">Ünvan:</span><div class="col-9 p-0">{{employeeAdress}}</div> </div>
+            <div class="row mt-2"><span class="customer-detail col-5">Əlaqə nömrəsi:</span><div class="col-5 p-0 ">+994{{employeePhoneNumber}}</div> </div>
+            <div class="row mt-2"><span class="customer-detail col-7">Yaxınlarının əlaqə nömrəsi:</span>+994{{employeeRelPhone}}</div>
+            <div class="row mt-2"><span class="customer-detail col-6">İşə qəbul olma tarixi:</span><div class="col-4 p-0">{{changeFormatDate(employeeRecruitmentDate)}}</div> </div>
+            <div class="row mt-2"><span class="customer-detail col-5">Bioqrafiya:</span><div class="col-12">{{employeeBiography}}</div> </div>
+
+
+        </div>
+    </aside>
+</div>
+</div>
+    <main class="col-12 col-lg-8" [ngClass]="{'d-none': responseNull==true}">
+        <div class="general-info row w-100 m-0">
+            <h2 class="col-12" [ngClass]="{'m-0':participatedProjects.length == 0}">İştirak etdiyi layihələr:</h2>
+            <div class="row" >
+                <mat-chip-list class="mx-2" let>
+                    <mat-chip [routerLink]="['/project-detail']" [queryParams]="{id:project.split('?')[3]}" *ngFor="let project of participatedProjects" [ngStyle]="{'background-color':'rgba('+ project.split('?')[2].split(':')[0] + ','+
+                    project.split('?')[2].split(':')[1] + ',' + project.split('?')[2].split(':')[2]+',0.3)', 'color':'rgb('+project.split('?')[2].split(':')[0]+','+
+                    project.split('?')[2].split(':')[1] + ',' + project.split('?')[2].split(':')[2]}">{{project.split('?')[0]}}
+                </mat-chip>
+                </mat-chip-list>
+                <div class="row " [ngClass]="{'d-none': participatedProjects.length != 0}">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center m-0 p-0" style="padding-bottom:10px !important">Boşdur</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="employee-div w-100 mt-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-3 tc-label">Maaş artımı:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="salaryDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': salaryDataLength == 0}" [style.width]="'90%'">
+                    <table mat-table [dataSource]="salaryData">
+
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'25%'">
+                                Artım tarixi:
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ changeFormatDate(element.date) }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd3" [style.width]="'25%'">
+                                Artım miqdarı:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amount}}&nbsp;AZN</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="salary">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'25%'">
+                                Yekun məbləğ:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.salary}}&nbsp;AZN</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="salariesColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: salariesColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="employee-div w-100 mt-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-3 tc-label">Bonus alma tarixçəsi:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="bonusDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': bonusDataLength == 0}" [style.width]="'90%'">
+                <!-- <div class="mat-elevation-z8 align-self-center" [style.width]="'90%'"> -->
+                    <table mat-table [dataSource]="bonusData">
+
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'25%'">
+                                Bonus verilmə tarixi:
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ changeFormatDate(element.date) }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd3" [style.width]="'25%'">
+                                Bonus miqdarı:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amount}}&nbsp;AZN</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="project">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'25%'">
+                                Proyekt:
+                            </th>
+                              <td mat-cell *matCellDef="let element">
+                                <mat-chip-list>
+                                    <mat-chip [ngStyle]="{'background-color':'rgba('+element.project.split('?')[1].split(':')[0] + ',' +
+                                    element.project.split('?')[1].split(':')[1] + ',' + element.project.split('?')[1].split(':')[2] + ', 0.3)',
+                                  'color':'rgba('+element.project.split('?')[1].split(':')[0] + ',' +
+                                  element.project.split('?')[1].split(':')[1] + ',' + element.project.split('?')[1].split(':')[2] + ')'}">
+                                        {{element.project.split('?')[0]}}
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </td>
+                            <!-- <td mat-cell *matCellDef="let element"> {{element.project}}</td> -->
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="bonusesColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: bonusesColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="employee-div w-100 mt-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-3 tc-label">Premiya alma tarixçəsi:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="premiumDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': premiumDataLength == 0}" [style.width]="'90%'">
+                    <table mat-table [dataSource]="premiumData">
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'25%'">
+                                Verilmə tarixi:
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ changeFormatDate(element.date) }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd3" [style.width]="'25%'">
+                                Premiya miqdarı:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amount}}&nbsp;AZN</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="reason">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'30%'">
+                                Səbəb:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.reason}}</td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="premiumsColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: premiumsColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="employee-div w-100 mt-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-3 tc-label">Məzuniyyət tarixçəsi:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="vacationDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': vacationDataLength == 0}" [style.width]="'90%'">
+                    <table mat-table [dataSource]="vacationData">
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'35%'">
+                                Məzuniyyət tarixi aralığı:
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{  changeFormatDate(element.startDate) }} - {{  changeFormatDate(element.endDate) }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="period">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd3" [style.width]="'25%'">
+                                Məzuniyyət müddəti:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.period.split('.')[0] == '00:00:00' ? 1 : element.period.split('.')[0]  }} gün</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="reason">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'25%'">
+                                Məzuniyyət səbəbi:
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.reason}}</td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="vacationsColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: vacationsColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="d-flex flex-column align-items-center justify-content-center" [ngClass]="{'d-none': responseNull==false}">
+        <h1 class="not-found-page">
+            Xəta 404
+        </h1>
+        <span>Səhifə tapılmadı</span>
+    </section>
+</div>
+<div class="spinner-div" style="position: absolute; top: 50%; left: 50%" *ngIf="showSpinner">
+    <mat-spinner [diameter]="40" class="spinner">
+    </mat-spinner>
+</div>

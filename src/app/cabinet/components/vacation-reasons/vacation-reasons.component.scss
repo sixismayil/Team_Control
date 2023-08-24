@@ -1,0 +1,61 @@
+@media screen and (max-width: 991px) {
+    div.container-fluid {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    div.container-fluid {
+        width: 50% !important;
+    }
+}
+
+.mat-menu-item {
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    line-height: 18px;
+    height: 36px;
+    padding: 0 16px;
+    text-align: left;
+    text-decoration: none;
+    max-width: 100%;
+    position: relative;
+}
+
+.fa-pen,
+.fa-trash {
+    margin-right: 10px;
+}
+
+span.actions {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 550;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.filter-customer {
+    padding: 0 15px;
+}
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 30%;
+    left: 48%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+}
+
+.spinner-div ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #e91717;
+}

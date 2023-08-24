@@ -1,0 +1,66 @@
+<form [formGroup]="projectForm">
+    <div class="new-customer row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1 class="tc-label">
+                Yeni Layihə
+            </h1>
+            <button mat-icon-button mat-dialog-close color="primary">
+        <mat-icon>close</mat-icon>
+      </button>
+        </div>
+        <div class="col-12" *ngIf="projectForm.controls.name">
+            <span class="form-label">Layihə:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="projectForm.controls.name.invalid && (projectForm.controls.name.dirty || projectForm.controls.name.touched )">
+                <div class="text-danger" *ngIf="projectForm.controls.name.errors">
+                    Ad boş ola bilməz.
+                </div>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="projectForm.controls.statusId">
+            <span class="form-label">Status:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select class="customer-component" formControlName="statusId" placeholder="Seçin">
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let status of statusArray" [value]="status.id">
+                        {{status.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="projectForm.controls.statusId.invalid && (projectForm.controls.statusId.dirty || projectForm.controls.statusId.touched )">
+                <div class="text-danger" *ngIf="projectForm.controls.statusId.errors">
+                    Status seçin.
+                </div>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="projectForm.controls.teamLeaderId">
+            <span class="form-label">Layihə üzrə rəhbər:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select class="customer-component" formControlName="teamLeaderId" placeholder="Seçin">
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let employee of employeeArray" [value]="employee.id">
+                        {{employee.fullname}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="projectForm.controls.teamLeaderId.invalid && (projectForm.controls.teamLeaderId.dirty || projectForm.controls.teamLeaderId.touched )">
+                <div class="text-danger" *ngIf="projectForm.controls.teamLeaderId.errors">
+                    Layihə üzrə rəhbər seçin.
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!showSpinner" class="col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center" style="padding-bottom:10px; padding-top:10px">
+            <button *ngIf="label=='new'" mat-button class="filter-btn" (click)="add_project()" [disabled]="showSpinner">Əlavə et</button>
+            <button *ngIf="label=='update'" mat-button class="filter-btn" (click)="add_project()" [disabled]="showSpinner">Yadda saxla</button>
+        </div>
+        <div class="row col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+            <button [disabled]="true" mat-button class="filter-btn">
+            Əlavə et
+        </button>
+            <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+            </mat-spinner>
+        </div>
+    </div>
+</form>

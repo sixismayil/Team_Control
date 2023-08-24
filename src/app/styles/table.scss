@@ -1,0 +1,89 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mat-table {
+    background-color: transparent !important;
+}
+
+table tr:last-child td
+/*To remove the last border*/
+
+{
+    //   border-bottom: 0 solid;
+}
+
+.mat-header-cell {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 14px;
+    line-height: 16px;
+    color: #ffffff;
+    border: none !important;
+}
+
+.sd {
+    border-radius: 2em 0 0 2rem !important;
+    // box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25), -4px 0px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sd1 {
+    border-radius: 0 2em 2rem 0 !important;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sd3 {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+mat-paginator {
+    border-radius: 0 0 30px 30px !important;
+}
+
+.mat-elevation-z8 {
+    border-radius: 30px;
+    background-color: white;
+}
+
+.mat-paginator-page-size-label {
+    display: none;
+}
+
+.mat-paginator-page-size {
+    margin-right: 0 !important;
+}
+
+.mat-paginator-page-size-select {
+    width: 53px !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.mat-paginator,
+.mat-paginator-page-size .mat-form-field-flex {
+    border-radius: 4px;
+    padding: 0 5px !important;
+}
+
+.mat-paginator-page-size-select .mat-select-min-line {
+    color: #757575;
+}
+
+.paginator-custom mat-form-field.mat-form-field {
+    border: 1px solid #cdd6e2;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 392px) {
+    .mat-paginator-range-label {
+        margin: 0 0px 0 0px !important;
+    }
+    .mat-paginator-navigation-first {
+        width: 20px !important;
+    }
+}

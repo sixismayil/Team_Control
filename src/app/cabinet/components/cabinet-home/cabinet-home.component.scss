@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+}
+
+//Section-1
+.card-box {
+    height: 196.00000516047692px;
+    width: 330px;
+    position: relative;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px 10px 40px;
+    margin: 20px 0px;
+    display: inline-block;
+}
+
+.card-box .inner {
+    padding: 55px 10px 0 10px;
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+    float: left;
+}
+
+.card-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: left;
+}
+
+.card-box p {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.card-box .card1 {
+    color: #ffd461;
+}
+
+.card-box .card2 {
+    color: #60a0e6;
+}
+
+.card-box .card3 {
+    color: #f88d24;
+}
+
+.card-box .image {
+    position: absolute;
+    top: auto;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+    float: left;
+    overflow: hidden;
+}
+
+img[alt="birce1"] {
+    border-radius: 0 30px 30px 0;
+    width: 100%;
+    float: left;
+}
+
+.section-1::-webkit-scrollbar {
+    display: none;
+}
+
+.main {
+    display: flex;
+}
+
+@media only screen and (max-width: 900px) {
+    .main {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 405px) {
+    .card-box {
+        width: 280px;
+        height: 140px;
+    }
+    .col-md-4 {
+        display: flex;
+        justify-content: center;
+    }
+    .card-box .inner {
+        padding: 35px 10px 0 10px;
+    }
+    .card-box h3 {
+        font-size: 19px;
+    }
+    .card-box p {
+        font-size: 19px;
+    }
+    img[alt="birce1"] {
+        height: 140px;
+        width: 150px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+    .mx-1 {
+        margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 406px) and (max-width: 767px) {
+    .card-box {
+        width: 330px;
+        height: 160px;
+    }
+    .col-md-4 {
+        display: flex;
+        justify-content: center;
+    }
+    .card-box .inner {
+        padding: 55px 10px 0 10px;
+    }
+    .card-box h3 {
+        font-size: 25px;
+    }
+    .card-box p {
+        font-size: 27px;
+    }
+    img[alt="birce1"] {
+        height: 156px;
+        width: 200px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+    .mx-1 {
+        margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 815px) {
+    .card-box {
+        width: 200px;
+        height: 160px;
+    }
+    .card-box .inner {
+        padding: 55px 60px 0 0px;
+    }
+    .card-box h3 {
+        font-size: 19px;
+    }
+    .card-box p {
+        font-size: 19px;
+    }
+    img[alt="birce1"] {
+        height: 156px;
+        width: 120px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+    .mx-1 {
+        margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 816px) and (max-width: 992px) {
+    .card-box {
+        width: 250px;
+        height: 166px;
+    }
+    .card-box .inner {
+        padding: 55px 10px 0 10px;
+    }
+    .card-box h3 {
+        font-size: 22px;
+    }
+    .card-box p {
+        font-size: 22px;
+    }
+    img[alt="birce1"] {
+        width: 150px;
+        height: 166px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+    .mx-1 {
+        margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1139px) {
+    .card-box {
+        width: 250px;
+        height: 166px;
+    }
+    .card-box .inner {
+        padding: 55px 10px 0 10px;
+    }
+    .card-box h3 {
+        font-size: 22px;
+    }
+    .card-box p {
+        font-size: 22px;
+    }
+    img[alt="birce1"] {
+        width: 150px;
+        height: 166px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+}
+
+@media screen and (min-width: 1140px) and (max-width: 1325px) {
+    .card-box {
+        width: 300px;
+        height: 170px;
+    }
+    .card-box .inner {
+        padding: 55px 10px 0 10px;
+    }
+    .card-box h3 {
+        font-size: 25px;
+    }
+    .card-box p {
+        font-size: 25px;
+    }
+    img[alt="birce1"] {
+        height: 166px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+}
+
+//Section-2
+// h1 {
+//     font-family: Inter;
+//     font-style: normal;
+//     font-weight: bold;
+//     font-size: 30px;
+//     line-height: 29px;
+//     color: #000000;
+//     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+// }
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 55%;
+    left: 48%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+}
+
+.spinner-div ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #e91717;
+}
+
+table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.section-2 {
+    position: relative;
+}

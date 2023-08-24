@@ -1,0 +1,20 @@
+<form>
+    <h1 mat-dialog-title class="tc-label">Məlumat</h1>
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col-12" *ngIf="data.Text">
+                <p>{{data.Text}}</p>
+            </div>
+
+        </div>
+    </div>
+    <mat-dialog-actions *ngIf="data.Text" align="end" class="mt-3">
+        <button mat-stroked-button class="filter-btn" [mat-dialog-close]="true" (click)="isRefresh(data.isRefresh)">
+      <span translate>Bağla</span>
+    </button>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions *ngIf="data.obj_message" align="end" class="mt-3">
+        <button mat-stroked-button class="filter-btn" [mat-dialog-close]="true" (click)="reload()"><span translate>Bağla</span></button>
+    </mat-dialog-actions>
+</form>

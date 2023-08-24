@@ -1,0 +1,86 @@
+<form [formGroup]="vacationForm">
+    <div class="new-customer row" [ngClass]="showAddVacationModal ? 'active': ''">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1 class="tc-label" *ngIf="label=='new'">
+                Yeni Məzuniyyət
+            </h1>
+            <h1 class="tc-label" *ngIf="label=='update'">
+                Məzuniyyəti Düzənlə
+            </h1>
+            <button mat-dialog-close mat-icon-button color="primary">
+              <mat-icon>close</mat-icon>
+              </button>
+        </div>
+        <div class="col-12" *ngIf="vacationForm.controls.employeeId">
+            <span class="form-label">Şəxs:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select class="customer-component" formControlName="employeeId" placeholder="Seçin">
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let employee of employeeArray" [value]="employee.id">
+                        {{employee.fullname}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="vacationForm.controls.employeeId.invalid && (vacationForm.controls.employeeId.dirty || vacationForm.controls.employeeId.touched)">
+                <div class="text-danger" *ngIf="vacationForm.controls.employeeId.errors?.required">
+                    Şəxs boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 filter-vacation-date"  *ngIf="vacationForm.controls.startDate">
+            <span class="form-label">Məzuniyyətin verilmə tarixi:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="startDate" placeholder="Başlanğıc" />
+                    <input matEndDate formControlName="endDate" placeholder="Son tarix" />
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-error *ngIf="vacationForm.controls.startDate.hasError('matStartDateInvalid')">Yanlış başlanğıc tarixi</mat-error>
+                <mat-error *ngIf="vacationForm.controls.endDate.hasError('matEndDateInvalid')">Yanlış son tarix</mat-error>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="vacationForm.controls.startDate.invalid && (vacationForm.controls.startDate.dirty || vacationForm.controls.startDate.touched)">
+                <div class="text-danger" *ngIf="vacationForm.controls.startDate.errors?.required">
+                    Məzuniyyət tarixi boş ola bilməz.
+                </div>
+            </div>
+            <div class="row col-12 justify-content-center" *ngIf="vacationForm.controls.endDate.invalid && (vacationForm.controls.endDate.dirty || vacationForm.controls.endDate.touched)">
+                <div class="text-danger" *ngIf="vacationForm.controls.endDate.errors?.required">
+                    Son məzuniyyət tarixi boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12" *ngIf="vacationForm.controls.vacationReasonId">
+            <span class="form-label">Məzuniyyət səbəbi:</span>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select class="customer-component" formControlName="vacationReasonId" placeholder="Seçin">
+                    <mat-option value=0>Seçin</mat-option>
+                    <mat-option *ngFor="let VacationReasonId of VacationReasonsArray" [value]="VacationReasonId.id">
+                        {{VacationReasonId.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row col-12 justify-content-center" *ngIf="vacationForm.controls.vacationReasonId.invalid && (vacationForm.controls.vacationReasonId.dirty || vacationForm.controls.vacationReasonId.touched)">
+                <div class="text-danger" *ngIf="vacationForm.controls.vacationReasonId.errors?.required">
+                    Səbəb boş ola bilməz.
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="!showSpinner" class="col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center" style="padding-bottom:10px; padding-top:10px">
+            <button *ngIf="label=='new'" mat-button class="filter-btn" (click)="add_vacation()" [disabled]="showSpinner">Əlavə et</button>
+            <button *ngIf="label=='update'" mat-button class="filter-btn" (click)="add_vacation()" [disabled]="showSpinner">Yadda saxla</button>
+        </div>
+        <div class="row col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+            <button [disabled]="true" mat-button class="filter-btn">
+            Əlavə et
+        </button>
+            <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+            </mat-spinner>
+        </div>
+    </div>
+</form>

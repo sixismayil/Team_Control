@@ -1,0 +1,137 @@
+<div class="container-fluid px-4 general row justify-content-around" [ngClass]="{'d-none':showSpinner}" style="padding-bottom: 100px">
+    <aside class="main-project-info col-6 col-lg-3 mb-4" [ngClass]="{'d-none': id == 0 || projectIsActive == false}">
+        <div class="image">
+            <img src="./../../../../assets/images/project.png" alt="">
+        </div>
+        <h1 class="project-label m-0 position-relative d-flex justify-content-center">
+            <div class="spinner-div" style="position: absolute; top: 44px; right: calc(50% - 30px);" *ngIf="showSpinner">
+                <mat-spinner [diameter]="40" class="spinner">
+                </mat-spinner>
+            </div>
+            {{showSpinner? "" : projectName}}
+        </h1>
+    </aside>
+    <main class="col-12 col-lg-8" [ngClass]="{'d-none':id == 0 || projectIsActive == false}">
+        <div class="general-info row w-100 m-0">
+            <h2 class="col-12">Ümumi məlumat</h2>
+            <div class="row">
+                <div class="d-flex align-items-center col-4 position-relative">
+                    <h4 class="d-flex align-items-center">Status:</h4>
+                    <mat-chip-list class="mx-2" [ngClass]="{'d-none':showSpinner || id == 0}">
+                        <mat-chip [ngStyle]="{'background-color': status != null ?'rgba('+status.split('?')[1].split(':')[0]+
+                        ','+status.split('?')[1].split(':')[1]+
+                        ','+status.split('?')[1].split(':')[2]+',0.3)':'','color': status != null ? 'rgb('+status.split('?')[1].split(':')[0]+
+                        ','+status.split('?')[1].split(':')[1]+
+                        ','+status.split('?')[1].split(':')[2]+')':''}">{{status != null? status.split('?')[0] : ''}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div class="col-7 team-leader-info">
+                    <h2>Layihə üzrə rəhbər:
+                        <span class="position-relative m-2">
+                      <div class="spinner-div" style="position: absolute; left: 80px; top: 38px;" *ngIf="showSpinner">
+                        <mat-spinner [diameter]="40" class="spinner">
+                        </mat-spinner>
+                    </div>
+                      {{showSpinner?"":teamLeader}}
+                    </span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="employee-div w-100 mt-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-3 tc-label">İşçilər:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="employeeDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': employeeDataLength == 0}" [style.width]="'90%'">
+                    <table mat-table [dataSource]="employeeData">
+                        <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'55%'">
+                                İşçi
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd3" [style.width]="'45%'">
+                                Vəzifə
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="isMain">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'20%'">
+                                Rolu
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{ (element.isMain ==1 )? "Əsas":"Köməkçi"}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="employeeColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: employeeColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="employee-div w-100 mt-4 mb-4">
+            <div class="container-fluid px-5 mx-1 position-relative d-flex flex-column">
+                <h1 class="pb-1 tc-label">Müştərilər:</h1>
+                <div class="spinner-div" style="position: absolute; left: calc(50% + 30px); top: calc(50% + 60px);" *ngIf="showSpinner">
+                    <mat-spinner [diameter]="40" class="spinner">
+                    </mat-spinner>
+                </div>
+                <div class="row" *ngIf="customerDataLength == 0 && showSpinner == false">
+                    <div class="col-12 w-100 d-flex justify-content-center">
+                        <h1 class="tc-label d-flex justify-content-center">Boşdur</h1>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8 align-self-center" [ngClass]="{'d-none': customerDataLength == 0}" [style.width]="'90%'">
+                    <table mat-table [dataSource]="customerData" class="">
+                        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="fullname">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd" [style.width]="'60%'">
+                                Müştəri
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ element.fullname }}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="role">
+                            <th mat-header-cell *matHeaderCellDef [style.background-color]="color" class="sd1" [style.width]="'40%'">
+                                Rolu
+                            </th>
+                            <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: customerColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="d-flex flex-column align-items-center justify-content-center" [ngClass]="{'d-none':id != 0 && projectIsActive != false}">
+        <h1 class="not-found-page">
+            Error 404
+        </h1>
+        <span>Səhifə tapılmadı</span>
+    </section>
+</div>
+<div class="spinner-div" style="position: absolute; top: 50%; left: 50%" *ngIf="showSpinner">
+    <mat-spinner [diameter]="40" class="spinner">
+    </mat-spinner>
+</div>

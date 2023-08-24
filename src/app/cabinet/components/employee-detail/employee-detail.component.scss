@@ -1,0 +1,140 @@
+aside.main-project-info {
+    height: 100%;
+    left: 238px;
+    top: 98px;
+    word-wrap: break-word;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 50px 20px;
+}
+
+aside .image {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.image img {
+    width: 220px;
+}
+
+aside .project-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    color: #333333;
+}
+
+div.general {
+    padding-top: 30px;
+}
+
+div.general-info {
+    height: 150px;
+    left: 546px;
+    top: 98px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+div.general-info h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: #333333;
+}
+
+div.general-info h4 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+    margin: 0;
+    color: #333333;
+}
+
+div.general-info mat-chip {
+    padding: 0 20px;
+}
+
+div.general-info div.team-leader-info h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 16px;
+    color: #333333;
+}
+
+div.general-info div.team-leader-info h2 span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+}
+
+div.employee-div {
+    width: 668px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 10px 15px 40px 15px;
+}
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 55%;
+    left: 48%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+}
+
+.spinner-div ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #e91717;
+}
+
+table tr:last-child td {
+    border-bottom: none !important;
+}
+
+section h1.not-found-page {
+    font-size: 80px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #e91717;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+section span {
+    font-size: 60px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+section {
+    width: 100% !important;
+    height: calc(100vh - 200px);
+}
+
+span.customer-detail {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+}
+

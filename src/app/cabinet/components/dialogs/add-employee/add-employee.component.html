@@ -1,0 +1,167 @@
+<div class="scrollbar scrollbar-danger">
+    <div class="force-overflow"></div>
+    <form [formGroup]="employeeForm">
+        <div class="new-customer row" [ngClass]="showAddEmployeeModal ? 'active': ''">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h1 class="tc-label" *ngIf="label=='new'">
+                    Yeni İşçi
+                </h1>
+                <h1 class="tc-label" *ngIf="label=='update'">
+                    İşçini Düzənlə
+                </h1>
+               <!-- <h3>&nbsp;&nbsp;&nbsp;&nbsp;Admin <mat-slide-toggle></mat-slide-toggle></h3> -->
+
+                <button mat-dialog-close mat-icon-button color="primary">
+                    <mat-icon>close</mat-icon>
+                    </button>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.name">
+                <span class="form-label">Ad:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput formControlName="name" autocomplete="off" required>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.name.invalid && (employeeForm.controls.name.dirty || employeeForm.controls.name.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.name.errors?.required">
+                        Ad boş ola bilməz.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.surname">
+                <span class="form-label">Soyad: </span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput formControlName="surname" autocomplete="off" required>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.surname.invalid && (employeeForm.controls.surname.dirty || employeeForm.controls.surname.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.surname.errors?.required">
+                        Soyad boş ola bilməz.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.position">
+                <span class="form-label">Vəzifə:</span>
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-select class="position-select" formControlName="position" placeholder="Seçin" multiple>
+                        <mat-option *ngFor="let position of positionsArray" [value]="position.id">
+                            {{position.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.isAdmin">
+                <span class="form-label">Admin xüsusiyyəti:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-select class="customer-component" formControlName="isAdmin" placeholder="Seçin" >
+                        <mat-option value="1">Bəli</mat-option>
+                        <mat-option value="0">Xeyr</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.email">
+                <span class="form-label">Email:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput type="email" formControlName="email">
+                </mat-form-field>
+                <mat-error *ngIf="employeeForm.controls.email.invalid">
+                    Düzgün e-mail adresi yazın.
+                </mat-error>
+
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.phoneNumber">
+                <span class="form-label">Əlaqə nömrəsi:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <span matPrefix>+994 &nbsp;</span>
+                    <input matInput type="tel" formControlName="phoneNumber" autocomplete="off" required>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.phoneNumber.invalid && (employeeForm.controls.phoneNumber.dirty || employeeForm.controls.phoneNumber.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.phoneNumber.errors?.required">
+                        Əlaqə nömrəsi boş ola bilməz.
+                    </div>
+                </div>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.phoneNumber.invalid && (employeeForm.controls.phoneNumber.dirty || employeeForm.controls.phoneNumber.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.phoneNumber.errors?.pattern">
+                        Düzgün nömrə daxil edin.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.relativesPhoneNumber">
+                <span class="form-label">Yaxınların əlaqə nömrəsi:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <span matPrefix>+994 &nbsp;</span>
+                    <input matInput type="tel" formControlName="relativesPhoneNumber" autocomplete="off" required>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.relativesPhoneNumber.invalid && (employeeForm.controls.relativesPhoneNumber.dirty || employeeForm.controls.relativesPhoneNumber.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.relativesPhoneNumber.errors?.required">
+                        Yaxınların əlaqə nömrəsi boş ola bilməz.
+                    </div>
+                </div>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.relativesPhoneNumber.invalid && (employeeForm.controls.relativesPhoneNumber.dirty || employeeForm.controls.relativesPhoneNumber.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.relativesPhoneNumber.errors?.pattern">
+                        Düzgün nömrə daxil edin.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.address">
+                <span class="form-label">Ünvan:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput formControlName="address">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.biography">
+                <span class="form-label">Bioqrafiya:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput formControlName="biography">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-12 date" *ngIf="employeeForm.controls.birthdate">
+                <span class="form-label">Doğum tarixi:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input [matDatepicker]="picker" matInput autocomplete="off" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.birthdate.invalid && (employeeForm.controls.birthdate.dirty || employeeForm.controls.birthdate.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.birthdate.errors?.required">
+                        Doğum tarixi boş ola bilməz.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 date" *ngIf="employeeForm.controls.recruitmentDate">
+                <span class="form-label">İşə girmə tarixi:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput [matDatepicker]="picker1" autocomplete="off" formControlName="recruitmentDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.recruitmentDate.invalid && (employeeForm.controls.recruitmentDate.dirty || employeeForm.controls.recruitmentDate.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.recruitmentDate.errors?.required">
+                        İşə girmə tarixi boş ola bilməz.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12" *ngIf="employeeForm.controls.salary">
+                <span class="form-label">Maaşı:</span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput type="number" formControlName="salary" autocomplete="off" required>
+                </mat-form-field>
+                <div class="row col-12 justify-content-center" *ngIf="employeeForm.controls.salary.invalid && (employeeForm.controls.salary.dirty || employeeForm.controls.salary.touched)">
+                    <div class="text-danger" *ngIf="employeeForm.controls.salary.errors?.required">
+                        Maaş boş ola bilməz.
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!showSpinner" class=" col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center" style="padding-bottom:10px; padding-top:10px">
+                <button *ngIf="label=='new'" mat-button class="filter-btn" (click)="add_employee()" [disabled]="showSpinner">Əlavə et</button>
+                <button *ngIf="label=='update'" mat-button class="filter-btn" (click)="add_employee()" [disabled]="showSpinner">Yadda saxla</button>
+            </div>
+            <div class="row col-lg-6 col-12 d-flex justify-content-lg-end justify-content-center align-items-lg-end align-items-center spinner-div" style="padding-bottom:10px; padding-top:10px" *ngIf="showSpinner">
+                <button [disabled]="true" mat-button class="filter-btn">
+                    Əlavə et
+                </button>
+                <mat-spinner style="margin:7px;" [diameter]="40" class="spinner">
+                </mat-spinner> 
+            </div>
+        </div>
+    </form>
+</div>

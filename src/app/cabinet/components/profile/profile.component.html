@@ -1,0 +1,120 @@
+<div class="container-fluid d-flex justify-content-center px-5" style="padding-bottom: 100px" [ngClass]="{'d-none':showSpinner}">
+    <div class="new-position row col-lg-6 col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="tc-label">
+                Profil
+            </h1>
+        </div>
+        <form class="col-lg-12 col-12 row" [formGroup]="profileForm">
+            <div class="col-12 row">
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.name">
+                    <span class="form-label">Ad:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput type="text" formControlName="name">
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.name.invalid && (profileForm.controls.name.dirty || profileForm.controls.name.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.name.errors">
+                            Ad boş ola bilməz.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.surname">
+                    <span class="form-label">Soyad:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput type="text" formControlName="surname">
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.surname.invalid && (profileForm.controls.surname.dirty || profileForm.controls.surname.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.surname.errors">
+                            Soyad boş ola bilməz.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 row">
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.email">
+                    <span class="form-label">Email:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.email.invalid && (profileForm.controls.email.dirty || profileForm.controls.email.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.email.errors">
+                            Düzgün email daxil edin.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.phoneNumber">
+                    <span class="form-label">Telefon nömrəsi:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <span matPrefix>+994 &nbsp;</span>
+                        <input matInput type="text" formControlName="phoneNumber" maxlength="9" required>
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.phoneNumber.invalid && (profileForm.controls.phoneNumber.dirty || profileForm.controls.phoneNumber.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.phoneNumber.errors">
+                            +994XXXXXXXXX
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 row">
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.relativesPhoneNumber">
+                    <span class="form-label">Yaxın şəxsin telefon nömrəsi:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <span matPrefix>+994 &nbsp;</span>
+                        <input matInput type="tel" formControlName="relativesPhoneNumber" maxlength="9" required>
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.relativesPhoneNumber.invalid && (profileForm.controls.relativesPhoneNumber.dirty || profileForm.controls.relativesPhoneNumber.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.relativesPhoneNumber.errors">
+                            +994XXXXXXXXX
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.address">
+                    <span class="form-label">Adress:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput type="text" formControlName="address">
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.address.invalid && (profileForm.controls.address.dirty || profileForm.controls.address.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.address.errors">
+                            Adress boş ola bilməz.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 row">
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.biography">
+                    <span class="form-label">Biografiya:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput type="text" formControlName="biography">
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.biography.invalid && (profileForm.controls.biography.dirty || profileForm.controls.biography.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.biography.errors">
+                            Bioqrafiya boş ola bilməz.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6" *ngIf="profileForm.controls.birthdate">
+                    <span class="form-label">Doğum tarixi:</span>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="row col-5 justify-content-center" *ngIf="profileForm.controls.birthdate.invalid && (profileForm.controls.birthdate.dirty || profileForm.controls.birthdate.touched )">
+                        <div class="text-danger text-nowrap" *ngIf="profileForm.controls.birthdate.errors">
+                            Doğum tarixi boş ola bilməz.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 row mt-3">
+                <div class="d-flex justify-content-center justify-content-lg-end">
+                    <button mat-button class="filter-btn" (click)="update_profile()" type="submit">Yadda saxla</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="spinner-div" style="position: absolute; top: 50%; left: 50%" *ngIf="showSpinner">
+    <mat-spinner [diameter]="40" class="spinner">
+    </mat-spinner>
+</div>

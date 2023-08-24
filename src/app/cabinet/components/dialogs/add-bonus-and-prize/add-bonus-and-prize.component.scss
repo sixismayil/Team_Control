@@ -1,0 +1,52 @@
+span.form-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+mat-form-field {
+    width: 100%;
+    padding: 10px;
+}
+
+.mat-icon-button.mat-primary {
+    color: #e91717 !important;
+}
+
+div.new-customer {
+    background-color: white;
+    width: 500px;
+    border-radius: 30px;
+    // padding: 30px 25px;
+}
+
+div.new-customer>div {
+    padding: 0 30px;
+}
+
+button:disabled {
+    display: none;
+}
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 48%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+}
+
+.spinner-div ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #e91717;
+}
+
+.dfilter-vacation-date .mat-form-field .mat-form-field {
+    height: 0em ;
+  }
+  
